@@ -4,26 +4,9 @@ block content
   h1= title
   p search results for vegetable 
   p 
+  - var vegetable=[{name: "Potato",color: "brown" ,weight: 2},{name: "Tomato",color: "red",weight: 4},{name: "Cabbage",color: "green",weight: 3}]
     div(class="container-fluid")
       div(class="row")
-        -
-            let vegetable  = [
-              {
-                "name": "Potato",
-                "color": "4.5" ,
-                "weight": 2
-              },
-              {
-                "name": "Tomato",
-                "color": "5.6" ,
-                "weight": 4
-              },
-              {
-                "name": "Cabbage",
-                "color": "2.7" ,
-                "weight": 3
-              },                   
-                ]
         each v,index in vegetable  
             div(class="col-sm-2" onclick=`buy(${index})`) #{v.name}
             div(class="col-sm-2" onclick=`buy(${index})`) #{v.color}
@@ -31,5 +14,5 @@ block content
     script.                
         function buy(intemNo)
         {
-              alert(`you purchased Item ${intemNo+1}`)
+              alert('you purchased Item ${intemNo+1}'')
         }
