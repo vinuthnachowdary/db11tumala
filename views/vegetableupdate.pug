@@ -2,11 +2,14 @@ extends layout
  
 block content 
   h1= title 
- 
-  - let vegetableid = toShow._id
-  - let vegetable_name = toShow.name
-  - let vegetablecolor = toShow.color
-  - let vegetableweight = toShow.weight
+
+  if (toShow == null) 
+    h2 No instance to Update     
+  else
+    - let vegetableid = toShow._id
+    - let vegetable_name = toShow.name
+    - let vegetablecolor = toShow.color
+    - let vegetableweight = toShow.weight
 
   div.row(class='mb-2')
     div.mr-1 ID is

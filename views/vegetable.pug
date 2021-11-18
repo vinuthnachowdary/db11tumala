@@ -1,18 +1,36 @@
 extends layout
 
 block content
-  h1= title
-  p search results for vegetable 
-  p 
-  - var vegetable=[{name: "Potato",color: "brown" ,weight: 2},{name: "Tomato",color: "red",weight: 4},{name: "Cabbage",color: "green",weight: 3}]
-    div(class="container-fluid")
-      div(class="row")
-        each v,index in vegetable  
-            div(class="col-sm-2" onclick=`buy(${index})`) #{v.name}
-            div(class="col-sm-2" onclick=`buy(${index})`) #{v.color}
-            div(class="col-sm-2" onclick=`buy(${index})`) #{v.weight}
-    script.                
-        function buy(intemNo)
-        {
-              alert('you purchased Item ${intemNo+1}'')
-        }
+  div(class="row m-2")
+  h1(class="col-sm-10")= title
+  a(href = "vegetable/create" class="btn bg-dark text-white col-sm-2") Create
+  |  
+
+  - const vegetable = ['name','color','weight']
+  //- let items = [] 
+  - let items = results; 
+  - let o;
+  script.
+    function buy(x){
+      alert('Purchased Item: ' + x)
+   } 
+
+  div(class='container-fluid')
+    div(class="d-flex justify-content-end")
+
+    div(class="p-3 mb-2 bg-dark text-white row")
+      each item in vegetable 
+        div(class="col-sm-2") #{item} :
+
+    
+    each o, index in items
+      div(class="card text-dark bg-warning mb-3" class='col' class='card' class='card-body' class='card-text' onclick='buy('+index+')') #{o}
+        
+          div(class='col-sm-2') #{o.name}
+          div(class='col-sm-2') #{o.color}
+          div(class='col-sm-2') $ #{o.weight}
+          div(class='col-sm-6')
+            //- div(class='col-sm-3' onclick='buy('+index+')') #{o} 
+            a(href = "vegetable/detail/?id=" + o._id)    detail --
+            a(href = "vegetable/update/?id=" + o._id)    update --
+            a(href = "vegetable/delete/?id=" + o._id)    delete    

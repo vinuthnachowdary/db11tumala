@@ -1,20 +1,25 @@
 extends layout
+
 block content
- h1= title
- - let vegetableid = toShow._id
- - let vegetable_name = toShow.name
- - let vegetablecolor = toShow.color
- - let vegetableweight = toShow.weight
- div
- div.row
- div(class='vegetableAttr mr-3') vegetable ID is:
- div #{vegetableid}
- div.row
- div(class='vegetableAttr mr-3') vegetable Name is:
- div #{vegetable_name}
- div.row
- div(class='vegetableAttr mr-3') vegetable Color is:
- div #{vegetablecolor}
- div.row
- div(class='vegetableAttr mr-3') vegetable weight is:
- div #{vegetableweight}
+  h1= title
+
+  if (toShow == null) 
+    h2 No instance to details     
+  else
+   - let vegetableid = toShow._id
+   - let vegetable_name = toShow.name
+   - let vegetablecolor = toShow.color
+   - let vegetableweight = toShow.weight
+  div
+    div.row
+      div(class='vegetableAttr mr-3') vegetable ID is:
+      div #{vegetableid}
+      div.row
+      div(class='vegetableAttr mr-3') vegetable Name is:
+      div #{vegetable_name}
+      div.row
+      div(class='vegetableAttr mr-3') vegetable Color is:
+      div #{vegetablecolor}
+      div.row
+      div(class='vegetableAttr mr-3') vegetable weight is:
+      div #{vegetableweight}
