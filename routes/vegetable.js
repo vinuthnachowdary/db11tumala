@@ -14,6 +14,9 @@ var express = require('express');
 const vegetable_controlers= require('../controllers/vegetable'); 
 var router = express.Router(); 
  
-/* GET costumes */ 
+/* GET vegetable */ 
 router.get('/', vegetable_controlers.vegetable_view_all_Page ); 
+/* GET detail vegetable page */
+router.get('/detail', vegetable_controlers.vegetable_view_one_Page);
+
 module.exports = router; 
