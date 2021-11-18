@@ -18,5 +18,7 @@ var router = express.Router();
 router.get('/', vegetable_controlers.vegetable_view_all_Page ); 
 /* GET detail vegetable page */
 router.get('/detail', vegetable_controlers.vegetable_view_one_Page);
+/* GET create vegetable page */
+router.get('/create', vegetable_controlers.vegetable_create_Page);
 
 module.exports = router; 

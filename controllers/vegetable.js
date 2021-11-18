@@ -88,15 +88,29 @@ exports.vegetable_view_all_Page = async function (req, res) {
 };
 
 // Handle a show one view with id specified by query
-exports.vegetable_view_one_Page = async function(req, res) {
+exports.vegetable_view_one_Page = async function (req, res) {
     console.log("single view for id " + req.query.id)
-    try{
-    result = await vegetable.findById( req.query.id)
-    res.render('vegetabledetail',
-   { title: 'Vegetable Detail', toShow: result });
+    try {
+        result = await vegetable.findById(req.query.id)
+        res.render('vegetabledetail',
+            { title: 'Vegetable Detail', toShow: result });
     }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
-   };
+};
+
+// Handle building the view for creating a vegetable.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.vegetable_create_Page = function (req, res) {
+    console.log("create view")
+    try {
+        res.render('vegetablecreate', { title: 'Vegetable Create' });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};

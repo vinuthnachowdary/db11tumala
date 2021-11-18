@@ -1,0 +1,36 @@
+extends layout
+
+block content
+ h1= title
+
+ form(id='vegetableForm', action="/resource/vegetable", method="POST")
+    div.form-group
+        label.vegetableAttr(for='name') vegetable name
+        input#name(type='text', name='name')
+    div.form-group
+        label.vegetableAttr(for='color') vegetable color
+        input#color(type='text', name='color')
+    div.form-group
+        label.vegetableAttr(for='weight') vegetable weight
+        input#weight(type='number', name='weight')
+    input(type="submit")
+
+    button(class="btn btn-secondary m-2" onclick="window.location.href='/vegetable'") Cancel 
+
+ script.
+    document.forms['vegetableForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+            method: 'POST',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+            alert("Save succeded")
+            // TODO handle body
+        }).catch((error) => {
+            // TODO handle error
+            alert("Save failed " + error )
+        });
+    });
