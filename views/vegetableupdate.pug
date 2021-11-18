@@ -1,0 +1,45 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let vegetableid = toShow._id
+  - let vegetable_name = toShow.name
+  - let vegetablecolor = toShow.color
+  - let vegetableweight = toShow.weight
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{vegetableid}
+  - let actionid = "/resource/vegetable/" + vegetableid
+  form(id='vegetableForm', action= actionid, method="PUT")
+    div.form-group
+        label.vegetableAttr(for='name') vegetable name
+        input#name(type='text', name='name', value= vegetable_name )
+    div.form-group
+        label.vegetableAttr(for='color') vegetable color
+        input#color(type='text', name='color', value= vegetablecolor )
+    div.form-group
+        label.vegetableAttr(for='weight') vegetable weight
+        input#weight(type='number', name='weight', value= vegetableweight )
+    input(type="submit")
+
+    button(class="btn btn-secondary m-2" onclick="window.location.href='/vegetable'") Cancel 
+ 
+  script. 
+    document.forms['vegetableForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 
