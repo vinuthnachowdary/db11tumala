@@ -6,4 +6,4 @@ const vegetableSchema = mongoose.Schema({
 }) 
  
 module.exports = mongoose.model("vegetable", 
-vegetableSchema) 
+vegetableSchema)

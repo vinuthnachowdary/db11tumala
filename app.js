@@ -86,7 +86,7 @@ app.use('/users', usersRouter);
 app.use('/vegetable', vegetableRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
-app.use('/', resourceRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

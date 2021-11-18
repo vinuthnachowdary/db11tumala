@@ -14,16 +14,16 @@ exports.vegetable_list = async function (req, res) {
 
 
 // for a specific vegetable. 
-exports.vegetable_detail = async function (req, res) {
-    vegetable.log("detail" + req.params.id)
-    try {
-        result = await vegetable.findById(req.params.id)
-        res.send(result)
-    } catch (error) {
-        res.status(500)
-        res.send(`{"error": document for id ${req.params.id} not found`);
-    }
-};
+exports.vegetable_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await vegetable.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
+}; 
 
 // Handle vegetable create on POST. 
 exports.vegetable_create_post = async function (req, res) {
@@ -57,7 +57,7 @@ exports.vegetable_update_put =  async function(req, res) {
     console.log(`update on id ${req.params.id} with body 
 ${JSON.stringify(req.body)}`) 
     try { 
-        let toUpdate = await vegetable.findById( req.params.id) 
+        let toUpdate = await vegetable.findById(req.params.id) 
         // Do updates of properties 
         if(req.body.name)  
                toUpdate.name = req.body.name; 
@@ -73,6 +73,8 @@ failed`);
     } 
 }; 
 
+// VIEWS
+// Handle a show all views
 
 exports.vegetable_view_all_Page = async function (req, res) {
     try {
