@@ -9,6 +9,13 @@ block content
   - const vegetable = ['name','color','weight']
   //- let items = [] 
   - let items = results; 
+  div(class="container-fluid")
+    div(class="row m-1")
+     each item in items
+      - let destination = `dispatch(\"/vegetable/update?id=${item._id}\")`
+      div(class="row-sm-2", class="m-1") Item #{item.flavour}(#{item.quantity}) is #{item.Cost}
+       br
+       button.btn( class="btn-primary ml-1", onclick= destination) Update
   - let o;
   script.
     function buy(x){
