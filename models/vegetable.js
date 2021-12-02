@@ -1,6 +1,6 @@
 const mongoose = require("mongoose") 
 const vegetableSchema = mongoose.Schema({ 
- name: String, 
+ name: {type:String, required:true}, 
  color: String, 
  weight: { type: Number, min: 1, max: 30, default: 0 },
 }) 
