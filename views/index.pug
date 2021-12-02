@@ -1,15 +1,28 @@
-extends layout
+//- extends layout
 
-block content
-  h1= title
-  p Welcome to Assignment 10 #{title}
-  button(type="button", class="btn btn-secondary", onclick="update()") Press Me
-  div(id="target") Display
-  a(href = '/vegetable') vegetable Page link
-  |
-  script. 
-    let client_count = 0;
-    function update() {
-      client_count = client_count + 1;
-      document.getElementById("target").innerHTML = `Value now ${client_count}`  ;
-      }
+//- block content
+//-  h1= title
+//-  p Welcome to Assignment 10 #{title}
+//-  button(type="button", class="btn btn-secondary", onclick="update()") Press Me
+//-  div(id="target") Display
+//-  a(href = '/vegetable') vegetable Page link
+//-  |
+//-  script. 
+//-    let client_count = 0;
+//-    function update() {
+//-      client_count = client_count + 1;
+//-      document.getElementById("target").innerHTML = `Value now ${client_count}`  ;
+//-      }
+
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/vegetable") Take me to vegetable 
+    br 
+    a(href="/logout") Logout 

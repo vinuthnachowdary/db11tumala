@@ -13,6 +13,17 @@ module.exports = router;
 var express = require('express'); 
 const vegetable_controlers= require('../controllers/vegetable'); 
 var router = express.Router(); 
+
+// A little function to check if we have an authorized user and continue on 
+//or 
+// redirect to login. 
+const secured = (req, res, next) => { 
+    if (req.user){ 
+      return next(); 
+    } 
+    req.session.returnTo = req.originalUrl; 
+    res.redirect("/login"); 
+  } 
  
 /* GET vegetable */ 
 router.get('/', vegetable_controlers.vegetable_view_all_Page ); 
@@ -21,7 +32,7 @@ router.get('/detail', vegetable_controlers.vegetable_view_one_Page);
 /* GET create vegetable page */
 router.get('/create', vegetable_controlers.vegetable_create_Page);
 /* GET create update page */
-router.get('/update', vegetable_controlers.vegetable_update_Page);
+router.get('/update',secured, vegetable_controlers.vegetable_update_Page);
 /* GET create vegetable page */
 router.get('/delete', vegetable_controlers.vegetable_delete_Page);
 
