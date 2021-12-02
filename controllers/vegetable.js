@@ -28,10 +28,10 @@ exports.vegetable_create_post = async function (req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"vegetable_type":"goat", "cost":12, "size":"large"}
-    document.flavour = req.body.flavour;
-    document.Cost = req.body.Cost;
-    document.quantity = req.body.quantity;
+    // {"vegetable_type":"goat", "color":12, "size":"large"}
+    document.name = req.body.name;
+    document.color = req.body.color;
+    document.weight = req.body.weight;
     try {
         let result = await document.save();
         res.send(result);
@@ -60,10 +60,10 @@ exports.vegetable_update_put = async function (req, res) {
     try {
         let toUpdate = await vegetable.findById(req.params.id)
         // Do updates of properties
-        if (req.body.flavour)
-            toUpdate.flavour = req.body.flavour;
-        if (req.body.Cost) toUpdate.Cost = req.body.Cost;
-        if (req.body.quantity) toUpdate.size = req.body.quantity;
+        if (req.body.name)
+            toUpdate.name = req.body.name;
+        if (req.body.color) toUpdate.color = req.body.color;
+        if (req.body.weight) toUpdate.size = req.body.weight;
         let result = await toUpdate.save();
         console.log("Sucess " + result)
         res.send(result)
